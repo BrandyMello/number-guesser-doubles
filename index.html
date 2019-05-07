@@ -13,28 +13,49 @@
   <main>
     <section class="game">
       <form class="range" name="range">
-        <h3>Set Range</h3>
-        <label for="min-range-input">Min Range</label>
-        <input type="text" name="range" id="min-range-input">
-        <label for="max-range-input">Max Range</label>
-        <input type="text" name="range" id="max-range-input">
-        <button class="update-btn" name="range">UPDATE</button>
+        <h3 class="range-card">Set Range</h3>
+          <div class="set-range-items">
+            <div class="form-elements style-range-inputs">
+              <label for="min-range-input">Min Range</label>
+              <input type="text" name="range" id="min-range-input">
+            </div>
+            <div class="form-elements style-range-inputs">
+              <label for="max-range-input">Max Range</label>
+              <input type="text" name="range" id="max-range-input">
+            </div>
+
+          <button class="update-btn" name="range">UPDATE</button>
+        </div>
       </form>
       <form class="current-game" name="current-game">
         <p>The Current Range is <span class="min-output">1</span> to <span class="max-output">100</span></p>
-        <h3>Challenger 1</h3>
-        <label for="chall1-name-input"></label>
-        <input type="text" name="current-game" id="chall1-name-input">
-        <label for="chall1-guess-input">Guess</label>
-        <input type="text" name="current-game" id="chall1-guess-input">
-        <h3>Challenger 2</h3>
-        <label for="chall2-name-input"></label>
-        <input type="text" name="current-game" id="chall2-name-input">
-        <label for="chall2-guess-input">Guess</label>
-        <input type="text" name="current-game" id="chall2-guess-input">
-        <button name="current-game">SUBMIT GUESS</button>
-        <button name="current-game">RESET GAME</button>
-        <button name="current-game">CLEAR</button>
+          <h3>Challenger 1</h3>
+          <div class="name-guess-form">
+            <div class="form-elements name-input" >
+              <label for="chall1-name-input">Name</label>
+              <input type="text" name="current-game" id="chall1-name-input">
+            </div>
+            <div class="form-elements guess-input">
+              <label for="chall1-guess-input">Guess</label>
+              <input type="text" name="current-game" id="chall1-guess-input">
+            </div>
+          </div>
+          <h3>Challenger 2</h3>
+          <div class="name-guess-form"> 
+            <div class="form-elements name-input">
+              <label for="chall2-name-input">Name</label>
+              <input type="text" name="current-game" id="chall2-name-input">
+            </div>
+            <div class="form-elements guess-input">
+              <label for="chall2-guess-input">Guess</label>
+              <input type="text" name="current-game" id="chall2-guess-input">
+            </div>
+          </div>
+        <div class="game-buttons-container">
+          <button name="current-game">SUBMIT GUESS</button>
+          <button name="current-game">RESET GAME</button>
+          <button name="current-game">CLEAR GAME</button>
+        </div>
       </form>
       <div class="latest-score">
         <h3>Latest Score</h3>
@@ -66,12 +87,8 @@
           <p><span class="clock">1</span>MINUTES</p>
           <button class="remove-card">x</button>
         </footer>
-        
       </article>
-      
     </section>
-
   </main>
-
 </body>
 </html>

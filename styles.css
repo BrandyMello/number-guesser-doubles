@@ -102,8 +102,45 @@ h1 {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .winnercard {
-  border: 1px solid red;
+  border: 1px solid #D0D2D3;
   height: 260px;
   padding: 10px;
   color: #6E6E6E;
@@ -169,5 +206,14 @@ ul {
 li {
   list-style: none;
   width: ;
-  margin: 10px;
+  margin: 8px;
+}
+
+.remove-card-btn {
+  background-color: #6E6E6E;
+  color: #fff;
+  font-weight: 300;
+  font-size: 1em;
+  height: 25px;
+  border-radius: 50%;
 }

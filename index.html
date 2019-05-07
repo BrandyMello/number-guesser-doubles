@@ -6,7 +6,7 @@
 </head>
 <body>
   <header>
-    <h1>Number<span>Guesser</span></h1>
+    <h1>NUMBER<span class="font-light">GUESSER</span></h1>
     <p>ULTIMATE CHALLENGER EDITION</p>
   </header>
   <main>
@@ -41,17 +41,32 @@
         <h4>Challenger 1 Name</h4>
         <p>current guess</p>
         <p class="chall1-guess-output"></p>
-        <p class="chall1-high-low">guess message</p> 
+        <p class="chall1-high-low font-light">guess message</p> 
         </div>
         <div class="chall2-score">
         <h4>Challenger 2 Name</h4>
         <p>current guess</p>
         <p class="chall2-guess-output"></p>
+        <p class="chall2-high-low">guess message</p>
         </div>
       </div>
     </section>
     <section class="display">
-      <div class="winnercard"></div>
+      <article class="winnercard">
+        <header>
+          <span class="chall1-name-output">Challenger 1 Name </span> vs <span class="chall2-name-output">Challenger 2 Name</span>
+        </header>
+        <main>
+          <h2>Challenger 2 Name</h2>
+          <p class="font-light">WINNER</p>
+        </main>
+        <footer>
+          <p><span class="guess-counter">23</span>GUESSES</p>
+          <p><span class="clock">1</span>MINUTES</p>
+          <button class="remove-card">x</button>
+        </footer>
+        
+      </article>
       
     </section>
 

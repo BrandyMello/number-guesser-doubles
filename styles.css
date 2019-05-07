@@ -47,7 +47,7 @@ h3 {
   background-color: #404041;
   position: relative;
   bottom: 15px;
-  width: 300px;
+  width: 325px;
   font-size: 20px;
   font-weight: 300;
   padding-left: 10px;
@@ -72,6 +72,7 @@ h3 {
 .form-elements {
   display: block;
   margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 label {
@@ -86,10 +87,10 @@ input {
 button {
   background-color: #6E6E6E;
   color: #FFFFFF;
-  height: 45px;
+  height: 40px;
   border-radius: 20px;
   font-family: "Open Sans", sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   width: 32%;
 }
@@ -102,7 +103,8 @@ button {
   width: 35%;
 }
 
-.current-game {
+.current-game,
+.range {
   border: 3px solid #D0D2D3;
   margin: 10px;
   padding: 10px;
@@ -114,4 +116,29 @@ button {
   text-decoration: underline;
   font-size: 20px;
 
+}
+
+.range-card {
+  margin-top: 0;
+}
+
+.set-range-items {
+  display: flex;
+  justify-content: space-between;
+}
+
+#min-range-input, 
+#max-range-input {
+  width: 100%;
+}
+
+
+
+.update-btn {
+  width: 20%;
+  margin-top: 10px;
+}
+
+.style-range-inputs {
+  width: 40%;
 }

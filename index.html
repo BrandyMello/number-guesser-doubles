@@ -13,13 +13,24 @@
   <main>
     <section class="game">
       <form class="range" name="range">
-        <h3>Set Range</h3>
-        <label for="min-range-input">Min Range</label>
-        <input type="text" name="range" id="min-range-input">
-        <label for="max-range-input">Max Range</label>
-        <input type="text" name="range" id="max-range-input">
-        <button class="update-btn" name="range">UPDATE</button>
+        <h3 class="range-card">Set Range</h3>
+          <div class="set-range-items">
+            <div class="form-elements style-range-inputs">
+              <label for="min-range-input">Min Range</label>
+              <input type="text" name="range" id="min-range-input">
+            </div>
+
+            <div class="form-elements style-range-inputs">
+              <label for="max-range-input">Max Range</label>
+              <input type="text" name="range" id="max-range-input">
+            </div>
+
+          <button class="update-btn" name="range">UPDATE</button>
+        </div>
+
       </form>
+
+
       <form class="current-game" name="current-game">
 
         <p>The Current Range is <span class="min-output">1</span> to <span class="max-output">100</span></p>

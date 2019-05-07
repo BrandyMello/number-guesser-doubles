@@ -1,7 +1,6 @@
 * {
   box-sizing: border-box;
   margin: 0
-  padding: 0;
 }
 
 body {
@@ -11,9 +10,12 @@ body {
 header {
   margin: auto;
   background-color: #404041;
-  height: 135px;
-  padding-top: 10px;
+  height: 10%;
 
+}
+
+p {
+  font-size: 20px;
 }
 
 h1,
@@ -32,12 +34,19 @@ h1 {
 
 }
 
+h3 {
+  display: block;
+  margin-bottom: 5px;
+  margin-top: 30px;
+
+}
+
 .subtitle {
   color: #ffffff;
   background-color: #404041;
   position: relative;
   bottom: 15px;
-  width: 300px;
+  width: 325px;
   font-size: 20px;
   font-weight: 300;
   padding-left: 10px;
@@ -47,97 +56,6 @@ h1 {
 .font-light {
   font-weight: 300;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .winnercard {
   border: 1px solid #D0D2D3;
@@ -216,4 +134,85 @@ li {
   font-size: 1em;
   height: 25px;
   border-radius: 50%;
+}
+
+  .name-guess-form {
+  display: flex;
+}
+
+.game-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.form-elements {
+  display: block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+}
+
+input {
+  width: 100%;
+  height: 30px;
+}
+
+button {
+  background-color: #6E6E6E;
+  color: #FFFFFF;
+  height: 40px;
+  border-radius: 20px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  width: 32%;
+}
+
+.name-input {
+  width: 60%;
+}
+
+.guess-input {
+  width: 35%;
+}
+
+.current-game,
+.range {
+  border: 3px solid #D0D2D3;
+  margin: 10px;
+  padding: 10px;
+}
+
+.min-output,
+.max-output {
+  font-weight: 800;
+  text-decoration: underline;
+  font-size: 20px;
+}
+
+.range-card {
+  margin-top: 0;
+}
+
+.set-range-items {
+  display: flex;
+  justify-content: space-between;
+}
+
+#min-range-input, 
+#max-range-input {
+  width: 100%;
+}
+
+.update-btn {
+  width: 20%;
+  margin-top: 10px;
+}
+
+.style-range-inputs {
+  width: 40%;
 }

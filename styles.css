@@ -68,7 +68,6 @@ h3 {
   margin-top: 40px;
 }
 
-
 .form-elements {
   display: block;
   margin-right: 10px;
@@ -115,7 +114,6 @@ button {
   font-weight: 800;
   text-decoration: underline;
   font-size: 20px;
-
 }
 
 .range-card {
@@ -131,8 +129,6 @@ button {
 #max-range-input {
   width: 100%;
 }
-
-
 
 .update-btn {
   width: 20%;

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Number Guesser Doubles</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Number<span>Guesser</span></h1>
+    <p>ULTIMATE CHALLENGER EDITION</p>
+  </header>
+  <main>
+    <section class="game">
+      <form class="range" name="range">
+        <h3>Set Range</h3>
+        <label for="min-range-input">Min Range</label>
+        <input type="text" name="range" id="min-range-input">
+        <label for="max-range-input">Max Range</label>
+        <input type="text" name="range" id="max-range-input">
+        <button class="update-btn" name="range">UPDATE</button>
+      </form>
+      <form class="current-game" name="current-game">
+        <p>The Current Range is <span class="min-output">1</span> to <span class="max-output">100</span></p>
+        <h3>Challenger 1</h3>
+        <label for="chall1-name-input"></label>
+        <input type="text" name="current-game" id="chall1-name-input">
+        <label for="chall1-guess-input">Guess</label>
+        <input type="text" name="current-game" id="chall1-guess-input">
+        <h3>Challenger 2</h3>
+        <label for="chall2-name-input"></label>
+        <input type="text" name="current-game" id="chall2-name-input">
+        <label for="chall2-guess-input">Guess</label>
+        <input type="text" name="current-game" id="chall2-guess-input">
+        <button name="current-game">SUBMIT GUESS</button>
+        <button name="current-game">RESET GAME</button>
+        <button name="current-game">CLEAR</button>
+      </form>
+      <div class="latest-score">
+        <h3>Latest Score</h3>
+        <div class="chall1-score">
+        <h4>Challenger 1 Name</h4>
+        <p>current guess</p>
+        <p class="chall1-guess-output"></p>
+        <p class="chall1-high-low">guess message</p> 
+        </div>
+        <div class="chall2-score">
+        <h4>Challenger 2 Name</h4>
+        <p>current guess</p>
+        <p class="chall2-guess-output"></p>
+        </div>
+      </div>
+    </section>
+    <section class="display">
+      <div class="winnercard"></div>
+      
+    </section>
+
+  </main>
+
+</body>
+</html>

@@ -58,11 +58,21 @@ h3 {
   font-weight: 300;
 }
 
+.scoreboard {
+  border: 2px solid #D0D2D3;
+  margin: 10px;
+}
+
 .latest-score {
   color: #6E6E6E;
   margin-left: 20px;
   display: flex;
   flex-flow: column-wrap;
+}
+
+.score-title {
+  margin-top: 10px;
+  margin-left: 30px;
 }
 
 .chall1-score {
@@ -73,6 +83,7 @@ h3 {
 .chall2-score {
   width: 25%;
   text-align: center;
+  margin-bottom: 15px;
 }
 
 .style-score {
@@ -86,6 +97,7 @@ h3 {
   height: 260px;
   padding: 10px;
   color: #6E6E6E;
+  margin: 20px;
 }
 
 .chall1-name-output,
@@ -157,6 +169,7 @@ li {
   font-weight: 300;
   font-size: 1em;
   height: 25px;
+  width: 25px;
   border-radius: 50%;
 }
 

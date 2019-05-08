@@ -14,11 +14,19 @@ function updateRange(e) {
   e.preventDefault();
   var min = document.querySelector('.min-output');
   var max = document.querySelector('.max-output');
-  min.innerText = minRangeInput.value;
-  max.innerText = maxRangeInput.value;
+  var newMinRange = parseInt(minRangeInput.value);
+  var newMaxRange = parseInt(maxRangeInput.value);
+  min.innerText = newMinRange;
+  max.innerText = newMaxRange;
+  getRandomArbitrary(newMinRange, newMaxRange);
+  minRangeInput.value = '';
+  maxRangeInput.value  = '';
+
 }
 
 
-function getRandomArbitrary(newMinRange, newMaxRange) {
-  return Math.random() * (max - min) + min;
+function getRandomArbitrary(min, max) {
+  var randomNumber = Math.floor(Math.random() * (max - min) + min);
+  console.log(randomNumber);
 }
+

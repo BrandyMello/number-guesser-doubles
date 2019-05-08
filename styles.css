@@ -272,3 +272,9 @@ main {
   background-color: #D0D2D3;
   border-left: 2px solid grey;
 }
+
+
+
+#chall1-name-input:invalid {
+  background-color: red;
+}

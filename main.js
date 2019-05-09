@@ -13,10 +13,18 @@ var chall1Guess = document.querySelector("#chall1-guess-input");
 var chall2Name = document.querySelector("#chall2-name-input");
 var chall2Name = document.querySelector("#chall2-name-input");
 var chall1Name = document.querySelector("#chall1-name-input");
+var guess1 = document.querySelector('#chall1-guess-input');
+var guess2 = document.querySelector('#chall2-guess-input');
+var message1 = document.querySelector('.chall1-high-low');
+var message2 = document.querySelector('.chall2-high-low');
+var guess1Output = document.querySelector('.chall1-guess-output');
+var guess2Output = document.querySelector('.chall2-guess-output');
+
 
 
 updateButton.addEventListener('click', updateRange);
-submitBtn.addEventListener('click', updateLatestScore);
+submitBtn.addEventListener('click', initiateGamePlay);
+
 
 chall1Name.addEventListener('keyup', function(){
   validateNames(chall1Name);
@@ -66,14 +74,29 @@ function validateGuess(challGuess) {
   }
 }
 
-function updateLatestScore(e) {
-  e.preventDefault();
+function updateLatestScore() {
   var name1 = document.querySelector('.scoreboard-name1');
   var name2 = document.querySelector('.scoreboard-name2');
-  var guess1 = document.querySelector('.chall1-guess-output');
-  var guess2 = document.querySelector('.chall2-guess-output');
   name1.innerText = chall1Name.value;
   name2.innerText = chall2Name.value;
-  guess1.innerText = chall1Guess.value;
-  guess2.innerText = chall2Guess.value;
+  guess1Output.innerText = chall1Guess.value;
+  guess2Output.innerText = chall2Guess.value;
 }
+
+function initiateGamePlay(e) {
+  e.preventDefault();
+  updateLatestScore()
+  compareGuess(guess1, message1)
+  compareGuess(guess2, message2)
+}
+
+function compareGuess(guess, message) {
+  var guessInt = parseInt(guess.value);
+  if (guessInt > randomNumber) {
+      message.innerText = "That's too high";
+  } else if (guessInt < randomNumber) {
+      message.innerText = "That's too low"
+  } else if (guessInt === randomNumber) {
+      message.innerText = "BOOM!"
+    }
+  }

@@ -1,16 +1,37 @@
 var minRange = 1;
 var maxRange = 100;
+var randomNumber
 
 var minRangeInput = document.getElementById('min-range-input');
 var maxRangeInput = document.getElementById('max-range-input');
 
 var updateButton = document.querySelector('.update-btn');
+var submitBtn = document.querySelector('#submit-btn');
+
 var chall2Guess = document.querySelector("#chall2-guess-input");
 var chall1Guess = document.querySelector("#chall1-guess-input");
 var chall2Name = document.querySelector("#chall2-name-input");
 var chall2Name = document.querySelector("#chall2-name-input");
+var chall1Name = document.querySelector("#chall1-name-input");
+
 
 updateButton.addEventListener('click', updateRange);
+submitBtn.addEventListener('click', updateLatestScore);
+
+chall1Name.addEventListener('keyup', function(){
+  validateNames(chall1Name);
+});
+chall2Name.addEventListener('keyup', function(){
+  validateNames(chall2Name);
+});
+chall1Guess.addEventListener('keyup', function(){
+  validateGuess(chall1Guess);
+});
+chall2Guess.addEventListener('keyup', function(){
+  validateGuess(chall2Guess);
+});
+
+getRandomArbitrary(1, 100);
 
 function updateRange(e) {
   e.preventDefault();
@@ -23,28 +44,13 @@ function updateRange(e) {
   getRandomArbitrary(newMinRange, newMaxRange);
   minRangeInput.value = '';
   maxRangeInput.value  = '';
-
 }
-
 
 function getRandomArbitrary(min, max) {
-  var randomNumber = Math.floor(Math.random() * (max - min) + min);
+  randomNumber = Math.floor(Math.random() * (max - min) + min);
   console.log(randomNumber);
+  return randomNumber;
 }
-
-
-
-var chall1Name = document.querySelector("#chall1-name-input");
-
-chall1Name.addEventListener('keyup', function(){
-  validateNames(chall1Name);
-});
-
-
-
-chall2Name.addEventListener('keyup', function(){
-  validateNames(chall2Name);
-});
 
 function validateNames(challName) {
   var regex = /^[0-9a-zA-Z]+$/;
@@ -53,30 +59,12 @@ function validateNames(challName) {
   }
 }
 
-
-
-
-chall1Guess.addEventListener('keyup', function(){
-  validateGuess(chall1Guess);
-});
-
-
-
-chall2Guess.addEventListener('keyup', function(){
-  validateGuess(chall2Guess);
-});
-
 function validateGuess(challGuess) {
   var regex = /^[0-9]+$/;
   if(regex.test(challGuess.value)!==true){
     console.log("invalid guess")
   }
 }
-
-var submitBtn = document.querySelector('#submit-btn');
-
-submitBtn.addEventListener('click', updateLatestScore);
-
 
 function updateLatestScore(e) {
   e.preventDefault();

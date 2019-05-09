@@ -75,6 +75,8 @@ function validateGuess(challGuess) {
 
 var submitBtn = document.querySelector('#submit-btn');
 
+submitBtn.addEventListener('click', updateLatestScore);
+
 
 function updateLatestScore(e) {
   e.preventDefault();
@@ -82,4 +84,8 @@ function updateLatestScore(e) {
   var name2 = document.querySelector('.scoreboard-name2');
   var guess1 = document.querySelector('.chall1-guess-output');
   var guess2 = document.querySelector('.chall2-guess-output');
+  name1.innerText = chall1Name.value;
+  name2.innerText = chall2Name.value;
+  guess1.innerText = chall1Guess.value;
+  guess2.innerText = chall2Guess.value;
 }

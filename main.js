@@ -19,11 +19,13 @@ var message1 = document.querySelector('.chall1-high-low');
 var message2 = document.querySelector('.chall2-high-low');
 var guess1Output = document.querySelector('.chall1-guess-output');
 var guess2Output = document.querySelector('.chall2-guess-output');
+var clearBtn = document.querySelector('#clear-btn');
 
 
-
+clearBtn.addEventListener('click', clearGuesses);
 updateButton.addEventListener('click', updateRange);
 submitBtn.addEventListener('click', initiateGamePlay);
+
 
 
 chall1Name.addEventListener('keyup', function(){
@@ -63,14 +65,14 @@ function getRandomArbitrary(min, max) {
 function validateNames(challName) {
   var regex = /^[0-9a-zA-Z]+$/;
   if(regex.test(challName.value)!==true){ 
-    console.log("invalid name")
+    // console.log("invalid name")
   }
 }
 
 function validateGuess(challGuess) {
   var regex = /^[0-9]+$/;
   if(regex.test(challGuess.value)!==true){
-    console.log("invalid guess")
+    // console.log("invalid guess")
   }
 }
 
@@ -85,9 +87,10 @@ function updateLatestScore() {
 
 function initiateGamePlay(e) {
   e.preventDefault();
-  updateLatestScore()
-  compareGuess(guess1, message1)
-  compareGuess(guess2, message2)
+  updateLatestScore();
+  compareGuess(guess1, message1);
+  compareGuess(guess2, message2);
+  clearGuesses();
 }
 
 function compareGuess(guess, message) {
@@ -99,4 +102,9 @@ function compareGuess(guess, message) {
   } else if (guessInt === randomNumber) {
       message.innerText = "BOOM!"
     }
+  }
+
+  function clearGuesses() {
+    guess1.value = "";
+    guess2.value = "";
   }

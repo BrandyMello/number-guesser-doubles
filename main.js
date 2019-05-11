@@ -17,7 +17,7 @@ var message2 = document.querySelector('.chall2-high-low');
 var guess1Output = document.querySelector('.chall1-guess-output');
 var guess2Output = document.querySelector('.chall2-guess-output');
 var clearBtn = document.querySelector('#clear-btn');
-var resertBtn = document.querySelector('#reset-btn');
+var resetBtn = document.querySelector('#reset-btn');
 var name1 = document.querySelector('.scoreboard-name1');
 var name2 = document.querySelector('.scoreboard-name2');
 var min = document.querySelector('.min-output');
@@ -28,23 +28,49 @@ var max = document.querySelector('.max-output');
 clearBtn.addEventListener('click', clearGame);
 updateButton.addEventListener('click', updateRange);
 submitBtn.addEventListener('click', initiateGamePlay);
-resertBtn.addEventListener('click', resetGame);
+resetBtn.addEventListener('click', resetGame);
 
+clearBtn.disabled = true;
+resetBtn.disabled = true;
+
+var inputTest = document.querySelectorAll('input');
+
+getRandomArbitrary(1, 100);
+
+
+function enableClearBtn(name) {
+  if (name.value === "") {
+  clearBtn.disabled = true; 
+} else {clearBtn.disabled = false;}
+}
+
+function enableResetBtn(name) {
+  if (name.value === "") {
+  resetBtn.disabled = true; 
+} else {resetBtn.disabled = false;}
+}
 
 chall1Name.addEventListener('keyup', function(){
   validateNames(chall1Name);
-});
-chall2Name.addEventListener('keyup', function(){
-  validateNames(chall2Name);
-});
-guess1.addEventListener('keyup', function(){
-  validateGuess(guess1);
-});
-guess2.addEventListener('keyup', function(){
-  validateGuess(guess2);
+  enableClearBtn(chall1Name);
+  enableResetBtn(chall1Name);
 });
 
-getRandomArbitrary(1, 100);
+chall2Name.addEventListener('keyup', function(){
+  validateNames(chall2Name);
+  enableClearBtn(chall2Name);
+  enableResetBtn(chall2Name);
+});
+
+guess1.addEventListener('keyup', function(){
+  validateGuess(guess1);
+  enableResetBtn(guess1);
+});
+
+guess2.addEventListener('keyup', function(){
+  validateGuess(guess2);
+  enableResetBtn(guess2);
+});
 
 function updateRange(e) {
   e.preventDefault();
@@ -69,6 +95,8 @@ function validateNames(challName) {
     // console.log("invalid name")
   }
 }
+
+//consider adding number type in HTML
 
 function validateGuess(challGuess) {
   var regex = /^[0-9]+$/;
@@ -116,6 +144,7 @@ function compareGuess(guess, message) {
   function clearGame(e) {
     e.preventDefault();
     clearNames();
+    clearBtn.disabled = true;
   }
 
   function resetScoreBoard() {
@@ -135,6 +164,16 @@ function compareGuess(guess, message) {
     max.innerText = 100;
     getRandomArbitrary(1, 100)
   }
+
+
+
+
+
+// function toggleClearBtn() {
+
+//   clearBtn.disabled = !clearBtn.disabled;
+// }
+// }
 
   // function clearRange() {
   //   minRange = 1;

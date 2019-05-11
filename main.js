@@ -25,6 +25,8 @@ var max = document.querySelector('.max-output');
 // var guesses = document.querySelector('.guess')
 // var messages = document.querySelector('.message')
 
+var displayArea = document.querySelector('.display');
+
 clearBtn.addEventListener('click', clearGame);
 updateButton.addEventListener('click', updateRange);
 submitBtn.addEventListener('click', initiateGamePlay);
@@ -128,8 +130,39 @@ function compareGuess(guess, message) {
       message.innerText = "That's too low"
   } else if (guessInt === randomNumber) {
       message.innerText = "BOOM!"
+      appendCard();
+//generate new random number -- keeping 1 - 100 or custom range?
     }
   }
+
+
+  
+
+function appendCard() {
+  displayArea.innerHTML += `
+    <article class="winnercard">
+        <div class="card-headline">
+          <span class="chall1-name-output">Challenger 1 Name </span> vs <span class="chall2-name-output">Challenger 2 Name</span>
+        </div>
+        <div class="card-winner">
+          <h2>Challenger 2 Name</h2>
+          <p class="font-light winner-tagline">WINNER</p>
+        <div >
+          <ul class="card-bottom"> 
+            <li>
+              <span class="guess-counter">23</span> GUESSES
+            </li>
+            <li>
+              <span class="clock">1</span> MINUTES
+            </li>
+            <li>
+              <button class="remove-card-btn">X</button>
+            </li>
+          </ul>
+        </div> 
+      </article> `
+
+}
 
   function clearGuesses() {
     guess1.value = "";

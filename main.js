@@ -52,26 +52,34 @@ function enableResetBtn(name) {
 } else {resetBtn.disabled = false;}
 }
 
-chall1Name.addEventListener('keyup', function(){
+chall1Name.addEventListener('keyup', function() {
   validateNames(chall1Name);
   enableClearBtn(chall1Name);
   enableResetBtn(chall1Name);
 });
 
-chall2Name.addEventListener('keyup', function(){
+chall2Name.addEventListener('keyup', function() {
   validateNames(chall2Name);
   enableClearBtn(chall2Name);
   enableResetBtn(chall2Name);
 });
 
-guess1.addEventListener('keyup', function(){
-  validateGuess(guess1);
+guess1.addEventListener('keyup', function() {
+  validateNumber(guess1);
   enableResetBtn(guess1);
 });
 
-guess2.addEventListener('keyup', function(){
-  validateGuess(guess2);
+guess2.addEventListener('keyup', function() {
+  validateNumber(guess2);
   enableResetBtn(guess2);
+});
+
+minRangeInput.addEventListener('keyup', function() {
+  validateNumber(minRangeInput);
+});
+
+maxRangeInput.addEventListener('keyup', function() {
+  validateNumber(maxRangeInput);
 });
 
 function updateRange(e) {
@@ -99,11 +107,12 @@ function validateNames(challName) {
 }
 
 //consider adding number type in HTML
-
-function validateGuess(challGuess) {
+//Made keyup event listeners on min and max inputs and change name to validateNumber with parameter of num to make it dynamic for all the listeners
+function validateNumber(num) {
+  console.log("invalid guess")
   var regex = /^[0-9]+$/;
-  if(regex.test(challGuess.value)!==true){
-    // console.log("invalid guess")
+  if(regex.test(num.value)!==true){
+    
   }
 }
 

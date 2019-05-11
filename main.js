@@ -44,25 +44,33 @@ function enableClearBtn(name) {
 } else {clearBtn.disabled = false;}
 }
 
+function enableResetBtn(name) {
+  if (name.value === "") {
+  resetBtn.disabled = true; 
+} else {resetBtn.disabled = false;}
+}
+
 chall1Name.addEventListener('keyup', function(){
   validateNames(chall1Name);
   enableClearBtn(chall1Name);
+  enableResetBtn(chall1Name);
 });
 
 chall2Name.addEventListener('keyup', function(){
   validateNames(chall2Name);
   enableClearBtn(chall2Name);
+  enableResetBtn(chall2Name);
 });
 
 guess1.addEventListener('keyup', function(){
   validateGuess(guess1);
+  enableResetBtn(guess1);
 });
 
 guess2.addEventListener('keyup', function(){
   validateGuess(guess2);
+  enableResetBtn(guess2);
 });
-
-
 
 function updateRange(e) {
   e.preventDefault();

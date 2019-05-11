@@ -288,3 +288,15 @@ main {
   background-color: #D0D2D3;
 }
 
+.error-icon {
+  width: 20px;
+}
+
+.validation-error {
+  margin: 2px 0px 0px 7px;
+}
+
+.error-message {
+  color: #DD1972;
+}
+

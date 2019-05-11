@@ -112,7 +112,9 @@ function validateNumber(num) {
   console.log("invalid guess")
   var regex = /^[0-9]+$/;
   if(regex.test(num.value)!==true){
-    
+    num.style.borderColor = '#DD1972';
+  } else {
+    num.style.borderColor = 'gray';
   }
 }
 

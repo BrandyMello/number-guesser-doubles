@@ -18,7 +18,11 @@
             <div class="form-elements style-range-inputs">
               <label for="min-range-input">Min Range</label>
               <input type="text" name="range" id="min-range-input">
+              <div class="min-above-max-error" hidden>
+                <img src="assets/error-icon.svg" class="error-icon"><span class="error-message"> Must be less than Max</span>
+              </div>
             </div>
+
             <div class="form-elements style-range-inputs">
               <label for="max-range-input">Max Range</label>
               <input type="text" name="range" id="max-range-input">

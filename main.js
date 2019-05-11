@@ -22,6 +22,8 @@ var name1 = document.querySelector('.scoreboard-name1');
 var name2 = document.querySelector('.scoreboard-name2');
 var min = document.querySelector('.min-output');
 var max = document.querySelector('.max-output');
+var minErrorElem = document.querySelector('.min-above-max-error');
+
 // var guesses = document.querySelector('.guess')
 // var messages = document.querySelector('.message')
 
@@ -76,6 +78,8 @@ guess2.addEventListener('keyup', function() {
 
 minRangeInput.addEventListener('keyup', function() {
   validateNumber(minRangeInput);
+  minAboveMaxError();
+
 });
 
 maxRangeInput.addEventListener('keyup', function() {
@@ -115,6 +119,15 @@ function validateNumber(num) {
     num.style.borderColor = '#DD1972';
   } else {
     num.style.borderColor = 'gray';
+  }
+}
+
+function minAboveMaxError() {
+  var newMinRange = parseInt(minRangeInput.value);
+  var newMaxRange = parseInt(maxRangeInput.value);
+  if (newMinRange >= newMaxRange || minRange > maxRange) {
+  minRangeInput.style.borderColor = '#DD1972';
+  minErrorElem.removeAttribute('hidden');
   }
 }
 

@@ -85,12 +85,14 @@ guess2.addEventListener('keyup', function() {
 minRangeInput.addEventListener('keyup', function() {
   validateNumber(minRangeInput);
   minAboveMaxError();
+  maxBelowMinError();
 
 });
 
 maxRangeInput.addEventListener('keyup', function() {
   validateNumber(maxRangeInput);
   maxBelowMinError();
+  minAboveMaxError();
 });
 
 
@@ -162,7 +164,7 @@ function minAboveMaxError() {
     minErrorElem.removeAttribute('hidden');
   }
   if (newMinRange < newMaxRange) {
-    minErrorElem.style.borderColor = 'gray';
+    minRangeInput.style.borderColor = 'gray';
     minErrorElem.setAttribute('hidden', true);
   }
 }
@@ -177,7 +179,7 @@ function maxBelowMinError() {
     maxErrorElem.removeAttribute('hidden');
   }
   if (newMaxRange > newMinRange || maxRange <= minRange) {
-    maxErrorElem.removeAttribute('border-color');
+    maxRangeInput.style.borderColor = 'gray';
     maxErrorElem.setAttribute('hidden', true);
   }
 }

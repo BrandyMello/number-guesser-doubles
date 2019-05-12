@@ -23,6 +23,7 @@ var name2 = document.querySelector('.scoreboard-name2');
 var min = document.querySelector('.min-output');
 var max = document.querySelector('.max-output');
 var minErrorElem = document.querySelector('.min-above-max-error');
+var maxErrorElem = document.querySelector('.max-below-min-error');
 var guessErrorElem1 = document.querySelector('.guess-outside-range-error-1');
 var guessErrorElem2 = document.querySelector('.guess-outside-range-error-2');
 
@@ -84,11 +85,14 @@ guess2.addEventListener('keyup', function() {
 minRangeInput.addEventListener('keyup', function() {
   validateNumber(minRangeInput);
   minAboveMaxError();
+  maxBelowMinError();
 
 });
 
 maxRangeInput.addEventListener('keyup', function() {
   validateNumber(maxRangeInput);
+  maxBelowMinError();
+  minAboveMaxError();
 });
 
 
@@ -155,13 +159,28 @@ function validateNumber(num) {
 function minAboveMaxError() {
   var newMinRange = parseInt(minRangeInput.value);
   var newMaxRange = parseInt(maxRangeInput.value);
-  if (newMinRange >= newMaxRange || minRange > maxRange) {
+  if (newMinRange >= newMaxRange || minRange >= maxRange) {
     minRangeInput.style.borderColor = '#DD1972';
     minErrorElem.removeAttribute('hidden');
   }
   if (newMinRange < newMaxRange) {
-    minErrorElem.style.borderColor = 'gray';
+    minRangeInput.style.borderColor = 'gray';
     minErrorElem.setAttribute('hidden', true);
+  }
+}
+
+//find and replace 'gray' with actual gray hex code
+
+function maxBelowMinError() {
+  var newMinRange = parseInt(minRangeInput.value);
+  var newMaxRange = parseInt(maxRangeInput.value);
+  if (newMaxRange <= newMinRange || maxRange <= minRange) {
+    maxRangeInput.style.borderColor = "#DD1972"; 
+    maxErrorElem.removeAttribute('hidden');
+  }
+  if (newMaxRange > newMinRange || maxRange <= minRange) {
+    maxRangeInput.style.borderColor = 'gray';
+    maxErrorElem.setAttribute('hidden', true);
   }
 }
 

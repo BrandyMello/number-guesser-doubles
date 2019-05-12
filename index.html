@@ -22,10 +22,12 @@
                 <img src="assets/error-icon.svg" class="error-icon"><span class="error-message"> Must be less than Max</span>
               </div>
             </div>
-
             <div class="form-elements style-range-inputs">
               <label for="max-range-input">Max Range</label>
               <input type="text" name="range" id="max-range-input">
+              <div class="max-below-min-error" hidden>
+                <img src="assets/error-icon.svg" class="error-icon"><span class="error-message"> Must be greater than Min</span>
+              </div>
             </div>
           <button class="update-btn" name="range">UPDATE</button>
         </div>

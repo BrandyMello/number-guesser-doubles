@@ -121,13 +121,17 @@ function validateNumber(num) {
     num.style.borderColor = 'gray';
   }
 }
-
+//Thinking about it... not sure why we need the logical or part of the conditional
 function minAboveMaxError() {
   var newMinRange = parseInt(minRangeInput.value);
   var newMaxRange = parseInt(maxRangeInput.value);
   if (newMinRange >= newMaxRange || minRange > maxRange) {
-  minRangeInput.style.borderColor = '#DD1972';
-  minErrorElem.removeAttribute('hidden');
+    minRangeInput.style.borderColor = '#DD1972';
+    minErrorElem.removeAttribute('hidden');
+  }
+  if (newMinRange < newMaxRange) {
+    minErrorElem.style.borderColor = 'gray';
+    minErrorElem.setAttribute('hidden', true);
   }
 }
 

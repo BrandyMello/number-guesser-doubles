@@ -28,15 +28,12 @@ var guessErrorElem1 = document.querySelector('.guess-outside-range-error-1');
 var guessErrorElem2 = document.querySelector('.guess-outside-range-error-2');
 var nanError1 = document.querySelector('.nan-error1');
 var nanError2 = document.querySelector('.nan-error2');
-var minNanError = document.querySelector('.min-nan-error');
-var maxNanError = document.querySelector('.max-nan-error');
-
-// var guesses = document.querySelector('.guess')
-// var messages = document.querySelector('.message')
-
+var submitErrorElem = document.querySelector('.submit-error');
+var updateErrorElem = document.querySelector('.update-error');
 var displayArea = document.querySelector('.display');
 
 clearBtn.addEventListener('click', clearGame);
+updateButton.addEventListener('click', updateError);
 updateButton.addEventListener('click', updateRange);
 submitBtn.addEventListener('click', initiateGamePlay);
 resetBtn.addEventListener('click', resetGame);
@@ -86,20 +83,22 @@ guess2.addEventListener('keyup', function() {
 });
 
 minRangeInput.addEventListener('keyup', function() {
-  validateNumber(minRangeInput, minNanError);//change to new funct validateMinMax
   minAboveMaxError();
   maxBelowMinError();
 
 });
 
 maxRangeInput.addEventListener('keyup', function() {
-  validateNumber(maxRangeInput, maxNanError); //change to new funct validateMinMax
   maxBelowMinError();
   minAboveMaxError();
 });
 
+function submitError(guess) {
+  if (guess.value === "") {
+    submitErrorElem.removeAttribute('hidden');
+  }
+}
 
-//use guess1 or guess2 as arguments for guess and inputName
 function validateGuess(guess, guessErrorElem) {
   var minValue = min.innerText;
   var maxValue = max.innerText;
@@ -120,6 +119,13 @@ function validateGuess(guess, guessErrorElem) {
   if (guess.value.length < 1) {
     guess.style.borderColor = '#D0D2D3';
     guessErrorElem.setAttribute('hidden', true);
+  }
+}
+
+function updateError(e) {
+  e.preventDefault();
+  if (minRangeInput.value.length < 1 || maxRangeInput.value.length < 1) {
+    updateErrorElem.removeAttribute('hidden');
   }
 }
 
@@ -147,7 +153,6 @@ function validateNames(challName) {
 }
 
 //consider adding number type in HTML
-//Made keyup event listeners on min and max inputs and change name to validateNumber with parameter of num to make it dynamic for all the listeners
 function validateNumber(num, error) {
   var numGuess = parseInt(num.value);
   var regex = /^[0-9]+$/;
@@ -160,12 +165,10 @@ function validateNumber(num, error) {
   }
 }
 
-
-//Thinking about it... not sure why we need the logical or part of the conditional
 function minAboveMaxError() {
   var newMinRange = parseInt(minRangeInput.value);
   var newMaxRange = parseInt(maxRangeInput.value);
-  if (newMinRange >= newMaxRange || minRange >= maxRange) {
+  if (newMinRange >= newMaxRange) {
     minRangeInput.style.borderColor = '#DD1972';
     minErrorElem.removeAttribute('hidden');
   }
@@ -180,11 +183,11 @@ function minAboveMaxError() {
 function maxBelowMinError() {
   var newMinRange = parseInt(minRangeInput.value);
   var newMaxRange = parseInt(maxRangeInput.value);
-  if (newMaxRange <= newMinRange || maxRange <= minRange) {
+  if (newMaxRange <= newMinRange) {
     maxRangeInput.style.borderColor = "#DD1972"; 
     maxErrorElem.removeAttribute('hidden');
   }
-  if (newMaxRange > newMinRange || maxRange <= minRange) {
+  if (newMaxRange > newMinRange) {
     maxRangeInput.style.borderColor = '#D0D2D3';
     maxErrorElem.setAttribute('hidden', true);
   }
@@ -199,6 +202,8 @@ function updateLatestScore() {
 
 function initiateGamePlay(e) {
   e.preventDefault();
+  submitError(guess1);
+  submitError(guess2);
   updateLatestScore();
   compareGuess(guess1, message1);
   compareGuess(guess2, message2);

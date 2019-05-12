@@ -14,25 +14,22 @@
     <section class="game">
       <form class="range" name="range">
         <h3 class="range-card">Set Range</h3>
+          <div class="update-error" hidden>
+            <img src="assets/error-icon.svg" class="error-icon"><span class="error-message">Please enter 2 numbers</span>
+          </div>
           <div class="set-range-items">
             <div class="form-elements style-range-inputs">
               <label for="min-range-input">Min Range</label>
-              <input type="text" name="range" id="min-range-input">
+              <input type="number" name="range" id="min-range-input">
               <div class="min-above-max-error" hidden>
                 <img src="assets/error-icon.svg" class="error-icon"><span class="error-message"> Must be less than Max</span>
-              </div>
-              <div class="min-nan-error" hidden>
-                <img src="assets/error-icon.svg" class="error-icon"><span class="error-message"> Must be a Number</span>
               </div>
             </div>
             <div class="form-elements style-range-inputs">
               <label for="max-range-input">Max Range</label>
-              <input type="text" name="range" id="max-range-input">
+              <input type="number" name="range" id="max-range-input">
               <div class="max-below-min-error" hidden>
                 <img src="assets/error-icon.svg" class="error-icon"><span class="error-message"> Must be greater than Min</span>
-              </div>
-              <div class="max-nan-error" hidden>
-                <img src="assets/error-icon.svg" class="error-icon"><span class="error-message"> Must be a Number</span>
               </div>
             </div>
           <button class="update-btn" name="range">UPDATE</button>
@@ -77,6 +74,9 @@
               </div>
             </div>
           </div>
+          <div class="submit-error" hidden>
+                <img src="assets/error-icon.svg" class="error-icon"><span class="error-message">Please enter 2 guesses</span>
+              </div>
         <div class="game-buttons-container">
           <button name="current-game" id="submit-btn">SUBMIT GUESS</button>
           <button name="current-game" id="reset-btn">RESET GAME</button>

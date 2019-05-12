@@ -23,7 +23,9 @@ var name2 = document.querySelector('.scoreboard-name2');
 var min = document.querySelector('.min-output');
 var max = document.querySelector('.max-output');
 var minErrorElem = document.querySelector('.min-above-max-error');
-var guessErrorElem = document.querySelector('.guess-outside-range-error');
+var guessErrorElem1 = document.querySelector('.guess-outside-range-error-1');
+var guessErrorElem2 = document.querySelector('.guess-outside-range-error-2');
+
 
 // var guesses = document.querySelector('.guess')
 // var messages = document.querySelector('.message')
@@ -70,13 +72,13 @@ chall2Name.addEventListener('keyup', function() {
 guess1.addEventListener('keyup', function() {
   validateNumber(guess1);
   enableResetBtn(guess1);
-  validateGuess(guess1);
+  validateGuess(guess1, guessErrorElem1);
 });
 
 guess2.addEventListener('keyup', function() {
   validateNumber(guess2);
   enableResetBtn(guess2);
-  validateGuess(guess2);
+  validateGuess(guess2, guessErrorElem2);
 });
 
 minRangeInput.addEventListener('keyup', function() {
@@ -91,7 +93,7 @@ maxRangeInput.addEventListener('keyup', function() {
 
 
 //use guess1 or guess2 as arguments for guess and inputName
-function validateGuess(guess) {
+function validateGuess(guess, guessErrorElem) {
   var minValue = min.innerText;
   var maxValue = max.innerText;
   var parsedMin = parseInt(minValue);

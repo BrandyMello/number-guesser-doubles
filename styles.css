@@ -176,12 +176,13 @@ li {
 
 .name-guess-form {
   display: flex;
+  margin-bottom: 20px;
 }
 
 .game-buttons-container {
   display: flex;
   justify-content: space-between;
-  margin-top: 40px;
+  margin-top: 5px;
 }
 
 .form-elements {

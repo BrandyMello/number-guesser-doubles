@@ -26,7 +26,10 @@ var minErrorElem = document.querySelector('.min-above-max-error');
 var maxErrorElem = document.querySelector('.max-below-min-error');
 var guessErrorElem1 = document.querySelector('.guess-outside-range-error-1');
 var guessErrorElem2 = document.querySelector('.guess-outside-range-error-2');
-
+var nanError1 = document.querySelector('.nan-error1');
+var nanError2 = document.querySelector('.nan-error2');
+var minNanError = document.querySelector('.min-nan-error');
+var maxNanError = document.querySelector('.max-nan-error');
 
 // var guesses = document.querySelector('.guess')
 // var messages = document.querySelector('.message')
@@ -71,26 +74,26 @@ chall2Name.addEventListener('keyup', function() {
 });
 
 guess1.addEventListener('keyup', function() {
-  validateNumber(guess1);
+  validateNumber(guess1, nanError1);
   enableResetBtn(guess1);
   validateGuess(guess1, guessErrorElem1);
 });
 
 guess2.addEventListener('keyup', function() {
-  validateNumber(guess2);
+  validateNumber(guess2, nanError2);
   enableResetBtn(guess2);
   validateGuess(guess2, guessErrorElem2);
 });
 
 minRangeInput.addEventListener('keyup', function() {
-  validateNumber(minRangeInput);
+  validateNumber(minRangeInput, minNanError);//change to new funct validateMinMax
   minAboveMaxError();
   maxBelowMinError();
 
 });
 
 maxRangeInput.addEventListener('keyup', function() {
-  validateNumber(maxRangeInput);
+  validateNumber(maxRangeInput, maxNanError); //change to new funct validateMinMax
   maxBelowMinError();
   minAboveMaxError();
 });
@@ -140,21 +143,24 @@ function getRandomArbitrary(min, max) {
 function validateNames(challName) {
   var regex = /^[0-9a-zA-Z]+$/;
   if(regex.test(challName.value)!==true){ 
-    // console.log("invalid name")
   }
 }
 
 //consider adding number type in HTML
 //Made keyup event listeners on min and max inputs and change name to validateNumber with parameter of num to make it dynamic for all the listeners
-function validateNumber(num) {
-  console.log("invalid guess")
+function validateNumber(num, error) {
+  var numGuess = parseInt(num.value);
   var regex = /^[0-9]+$/;
   if(regex.test(num.value)!==true){
     num.style.borderColor = '#DD1972';
+    error.removeAttribute('hidden', false);
   } else {
-    num.style.borderColor = 'gray';
+    error.setAttribute('hidden', true);
+    num.style.borderColor = '#D0D2D3';
   }
 }
+
+
 //Thinking about it... not sure why we need the logical or part of the conditional
 function minAboveMaxError() {
   var newMinRange = parseInt(minRangeInput.value);
@@ -164,7 +170,7 @@ function minAboveMaxError() {
     minErrorElem.removeAttribute('hidden');
   }
   if (newMinRange < newMaxRange) {
-    minRangeInput.style.borderColor = 'gray';
+    minRangeInput.style.borderColor = '#D0D2D3';
     minErrorElem.setAttribute('hidden', true);
   }
 }
@@ -179,7 +185,7 @@ function maxBelowMinError() {
     maxErrorElem.removeAttribute('hidden');
   }
   if (newMaxRange > newMinRange || maxRange <= minRange) {
-    maxRangeInput.style.borderColor = 'gray';
+    maxRangeInput.style.borderColor = '#D0D2D3';
     maxErrorElem.setAttribute('hidden', true);
   }
 }

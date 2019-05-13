@@ -296,16 +296,3 @@ function appendCard() {
   }
 
 
-
-
-
-// function toggleClearBtn() {
-
-//   clearBtn.disabled = !clearBtn.disabled;
-// }
-// }
-
-  // function clearRange() {
-  //   minRange = 1;
-  //   maxRange = 100;
-  // }

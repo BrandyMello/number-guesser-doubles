@@ -32,6 +32,7 @@ var submitErrorElem = document.querySelector('.submit-error');
 var updateErrorElem = document.querySelector('.update-error');
 var displayArea = document.querySelector('.display');
 
+
 clearBtn.addEventListener('click', clearGame);
 updateButton.addEventListener('click', updateError);
 updateButton.addEventListener('click', updateRange);
@@ -248,9 +249,17 @@ function appendCard() {
             </li>
           </ul>
         </div> 
-      </article> `
-
+      </article> `;
+      generateNewRandomNum();
 }
+
+  function generateNewRandomNum() {
+    var minValue = min.innerText;
+    var maxValue = max.innerText;
+    var parsedMin = parseInt(minValue);
+    var parsedMax = parseInt(maxValue);
+    getRandomArbitrary(parsedMin, parsedMax);
+  }
 
   function clearGuesses() {
     guess1.value = "";
@@ -287,16 +296,3 @@ function appendCard() {
   }
 
 
-
-
-
-// function toggleClearBtn() {
-
-//   clearBtn.disabled = !clearBtn.disabled;
-// }
-// }
-
-  // function clearRange() {
-  //   minRange = 1;
-  //   maxRange = 100;
-  // }

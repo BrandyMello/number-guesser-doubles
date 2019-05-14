@@ -48,6 +48,16 @@ var inputTest = document.querySelectorAll('input');
 
 getRandomArbitrary(1, 100);
 
+function increaseDifficulty() {
+  var parsedMin = parseInt(min.innerText);
+  var parsedMax = parseInt(max.innerText);
+  var minMinus = parsedMin - 10;
+  var maxPlus = parsedMax + 10;
+  getRandomArbitrary(minMinus, maxPlus);
+  min.innerText = minMinus;
+  max.innerText = maxPlus;
+}
+
 
 function enableClearBtn(name) {
   if (name.value === "") {
@@ -231,6 +241,7 @@ function compareGuess(guess, message, name) {
       message.innerText = "BOOM!"
       appendCard(name);
       guessCount = 0;
+      increaseDifficulty();
     }
   }
 
@@ -261,7 +272,7 @@ function appendCard(winnerName) {
         </div> 
       </article> `;
       displayArea.insertAdjacentHTML('afterbegin', cardHTML);
-      generateNewRandomNum();
+      // generateNewRandomNum();
 }
 
   function deleteCard(e){

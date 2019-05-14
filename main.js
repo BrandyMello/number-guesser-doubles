@@ -157,10 +157,11 @@ function validateNames(challName) {
 function validateNumber(num, error) {
   var numGuess = parseInt(num.value);
   var regex = /^[0-9]+$/;
-  if(regex.test(num.value)!==true){
+  if(regex.test(numGuess) !== true){
     num.style.borderColor = '#DD1972';
     error.removeAttribute('hidden', false);
-  } else {
+  }
+  if (num.value === ""){
     error.setAttribute('hidden', true);
     num.style.borderColor = '#D0D2D3';
   }

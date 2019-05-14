@@ -283,7 +283,11 @@ main {
 
 
 #chall1-name-input:invalid {
-  background-color: red;
+  border-color: #DD1972;
+}
+
+#chall2-name-input:invalid {
+  border-color: #DD1972;
 }
 
 

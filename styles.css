@@ -21,7 +21,8 @@ p {
 h1,
 p.subtitle {
   text-align: center;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 h1 {
@@ -38,7 +39,7 @@ h3 {
   display: block;
   color: #404041;
   margin-bottom: 5px;
-  margin-top: 30px;
+  margin-top: 15px;
 
 }
 
@@ -67,8 +68,8 @@ h3 {
 .latest-score {
   color: #6E6E6E;
   display: flex;
-  flex-flow: column-wrap;
-  justify-content: center;
+/*  flex-flow: column-wrap;
+*/  justify-content: center;
 }
 
 .score-title {
@@ -94,7 +95,7 @@ h3 {
 
 .winnercard {
   border: 2px solid grey;
-  height: 260px;
+  height: auto;
   padding: 10px;
   color: #6E6E6E;
   margin: 20px;
@@ -136,10 +137,7 @@ h2 {
 
 p.winner-tagline {
   margin-block-start: 0;
-  margin-block-end: .8em;
-}
-
-.winner-tagline {
+  margin-block-end: 10px;
   font-size: 2.5em;
 }
 
@@ -176,7 +174,7 @@ li {
 
 .name-guess-form {
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .game-buttons-container {
@@ -208,12 +206,13 @@ input:focus {
 button {
   background-color: #6E6E6E;
   color: #FFFFFF;
-  height: 40px;
+  height: 30px;
   border-radius: 20px;
   font-family: "Open Sans", sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   width: 32%;
+  padding: 5px;
 }
 
 .name-input {
@@ -226,7 +225,7 @@ button {
 
 .current-game,
 .range {
-  border: 3px solid #D0D2D3;
+  border: 2px solid #D0D2D3;
   margin: 10px;
   padding: 10px;
 }
@@ -254,7 +253,7 @@ button {
 
 .update-btn {
   width: 20%;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .style-range-inputs {
@@ -263,6 +262,8 @@ button {
 
 main {
   display: flex;
+  height: 100vh;
+
 }
 
 .game,
@@ -306,3 +307,138 @@ main {
   color: #DD1972;
 }
 
+/*Media Queries*/
+
+@media screen and (max-width: 900px) {
+
+p.winner-tagline {
+  font-size: 1.8em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+.chall1-name-output,
+.chall2-name-output {
+  font-size: 0.8em;
+}
+
+button {
+  font-size: 13px;
+}
+
+}
+
+@media screen and (max-width: 770px) {
+
+  .style-score {
+    font-size: 4em;
+  }
+
+  ul {
+    font-size: 14px;
+  }
+
+  .game-buttons-container {
+    justify-content: none;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  button {
+    width: 100%;
+    margin: 8px;
+  }
+
+  .set-range-items {
+    flex-direction: column;
+    align-items: left;
+    /*justify-content: none;*/
+  }
+
+  .style-range-inputs {
+    width: 99%;
+  }
+
+  .update-btn {
+    width: 30%;
+    margin-top: 10px;
+    margin-left: 0px;
+  }
+
+  main {
+  height: 150vh;
+}
+
+  p {
+    font-size: 14px;
+  }
+
+  .error-message {
+    font-size: 12px;
+  }
+
+  .error-icon {
+    width: 14px;
+  }
+
+   .latest-score {
+    display: block;
+  }
+
+  .chall1-score {
+    border-right: none;
+
+    border-bottom: 2px solid #D0D2D3;
+  }
+
+  .chall1-score,
+  .chall2-score {
+    margin: auto;
+    margin-bottom: 20px;
+    padding-bottom: 20px; 
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+
+  h1 {
+    width: 305px;
+    font-size: 2.2em;
+    padding-bottom: 5px;
+  }
+
+  .subtitle {
+    font-size: 11px;
+    width: 178px;
+/*    bottom: 5;
+*/    padding-right: 5px;
+    padding-left: 5px;
+    padding-top: 5px;
+  }
+
+  main {
+    flex-direction: column; 
+  }
+
+  .display,
+  .game {
+    width: 100%;
+  }
+
+  .style-score {
+  font-size: 6em;
+  }
+
+  p {
+  font-size: 20px;
+  }
+
+  header {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+}

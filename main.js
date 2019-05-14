@@ -86,12 +86,13 @@ guess2.addEventListener('keyup', function() {
 minRangeInput.addEventListener('keyup', function() {
   minAboveMaxError();
   maxBelowMinError();
-
+  removeUpdateError();
 });
 
 maxRangeInput.addEventListener('keyup', function() {
   maxBelowMinError();
   minAboveMaxError();
+  removeUpdateError();
 });
 
 function submitError(guess) {
@@ -127,7 +128,12 @@ function updateError(e) {
   e.preventDefault();
   if (minRangeInput.value.length < 1 || maxRangeInput.value.length < 1) {
     updateErrorElem.removeAttribute('hidden');
-  }
+  } else {updateErrorElem.setAttribute('hidden', true);}
+}
+
+function removeUpdateError() {
+  if (minRangeInput.value.length > 0 || maxRangeInput.value.length > 0) {
+     updateErrorElem.setAttribute('hidden', true);}
 }
 
 function updateRange(e) {

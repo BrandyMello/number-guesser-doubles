@@ -1,6 +1,7 @@
 var minRange = 1;
 var maxRange = 100;
 var randomNumber
+var guessCount = 0;
 
 var minRangeInput = document.getElementById('min-range-input');
 var maxRangeInput = document.getElementById('max-range-input');
@@ -38,6 +39,7 @@ updateButton.addEventListener('click', updateError);
 updateButton.addEventListener('click', updateRange);
 submitBtn.addEventListener('click', initiateGamePlay);
 resetBtn.addEventListener('click', resetGame);
+displayArea.addEventListener('click', deleteCard);
 
 clearBtn.disabled = true;
 resetBtn.disabled = true;
@@ -45,6 +47,16 @@ resetBtn.disabled = true;
 var inputTest = document.querySelectorAll('input');
 
 getRandomArbitrary(1, 100);
+
+function increaseDifficulty() {
+  var parsedMin = parseInt(min.innerText);
+  var parsedMax = parseInt(max.innerText);
+  var minMinus = parsedMin - 10;
+  var maxPlus = parsedMax + 10;
+  getRandomArbitrary(minMinus, maxPlus);
+  min.innerText = minMinus;
+  max.innerText = maxPlus;
+}
 
 
 function enableClearBtn(name) {
@@ -213,6 +225,7 @@ function initiateGamePlay(e) {
   submitError(guess1);
   submitError(guess2);
   updateLatestScore();
+  guessCount = guessCount +2;
   compareGuess(guess1, message1, chall1Name.value);
   compareGuess(guess2, message2, chall2Name.value);
   clearGuesses();
@@ -227,7 +240,8 @@ function compareGuess(guess, message, name) {
   } else if (guessInt === randomNumber) {
       message.innerText = "BOOM!"
       appendCard(name);
-//generate new random number -- keeping 1 - 100 or custom range?
+      guessCount = 0;
+      increaseDifficulty();
     }
   }
 
@@ -235,7 +249,7 @@ function compareGuess(guess, message, name) {
   
 
 function appendCard(winnerName) {
-  displayArea.innerHTML += `
+  var cardHTML = `
     <article class="winnercard">
         <div class="card-headline">
           <span class="chall1-name-output">${chall1Name.value}</span> vs <span class="chall2-name-output">${chall2Name.value}</span>
@@ -246,7 +260,7 @@ function appendCard(winnerName) {
         <div >
           <ul class="card-bottom"> 
             <li>
-              <span class="guess-counter">23</span> GUESSES
+              <span class="guess-counter">${guessCount}</span> GUESSES
             </li>
             <li>
               <span class="clock">1</span> MINUTES
@@ -257,8 +271,16 @@ function appendCard(winnerName) {
           </ul>
         </div> 
       </article> `;
-      generateNewRandomNum();
+      displayArea.insertAdjacentHTML('afterbegin', cardHTML);
+      // generateNewRandomNum();
 }
+
+  function deleteCard(e){
+    console.log(e.target);
+    if (e.target.className === "remove-card-btn"){
+      e.target.closest('.winnercard').remove();
+    }
+  }
 
   function generateNewRandomNum() {
     var minValue = min.innerText;

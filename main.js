@@ -38,6 +38,7 @@ updateButton.addEventListener('click', updateError);
 updateButton.addEventListener('click', updateRange);
 submitBtn.addEventListener('click', initiateGamePlay);
 resetBtn.addEventListener('click', resetGame);
+displayArea.addEventListener('click', deleteCard);
 
 clearBtn.disabled = true;
 resetBtn.disabled = true;
@@ -235,7 +236,7 @@ function compareGuess(guess, message, name) {
   
 
 function appendCard(winnerName) {
-  displayArea.innerHTML += `
+  var cardHTML = `
     <article class="winnercard">
         <div class="card-headline">
           <span class="chall1-name-output">${chall1Name.value}</span> vs <span class="chall2-name-output">${chall2Name.value}</span>
@@ -257,8 +258,16 @@ function appendCard(winnerName) {
           </ul>
         </div> 
       </article> `;
+      displayArea.insertAdjacentHTML('afterbegin', cardHTML);
       generateNewRandomNum();
 }
+
+  function deleteCard(e){
+    console.log(e.target);
+    if (e.target.className === "remove-card-btn"){
+      e.target.closest('.winnercard').remove();
+    }
+  }
 
   function generateNewRandomNum() {
     var minValue = min.innerText;

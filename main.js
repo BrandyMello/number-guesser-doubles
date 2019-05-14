@@ -213,12 +213,12 @@ function initiateGamePlay(e) {
   submitError(guess1);
   submitError(guess2);
   updateLatestScore();
-  compareGuess(guess1, message1);
-  compareGuess(guess2, message2);
+  compareGuess(guess1, message1, chall1Name.value);
+  compareGuess(guess2, message2, chall2Name.value);
   clearGuesses();
 }
 
-function compareGuess(guess, message) {
+function compareGuess(guess, message, name) {
   var guessInt = parseInt(guess.value);
   if (guessInt > randomNumber) {
       message.innerText = "That's too high";
@@ -226,7 +226,7 @@ function compareGuess(guess, message) {
       message.innerText = "That's too low"
   } else if (guessInt === randomNumber) {
       message.innerText = "BOOM!"
-      appendCard();
+      appendCard(name);
 //generate new random number -- keeping 1 - 100 or custom range?
     }
   }
@@ -234,14 +234,14 @@ function compareGuess(guess, message) {
 
   
 
-function appendCard() {
+function appendCard(winnerName) {
   displayArea.innerHTML += `
     <article class="winnercard">
         <div class="card-headline">
-          <span class="chall1-name-output">Challenger 1 Name </span> vs <span class="chall2-name-output">Challenger 2 Name</span>
+          <span class="chall1-name-output">${chall1Name.value}</span> vs <span class="chall2-name-output">${chall2Name.value}</span>
         </div>
         <div class="card-winner">
-          <h2>Challenger 2 Name</h2>
+          <h2>${winnerName}</h2>
           <p class="font-light winner-tagline">WINNER</p>
         <div >
           <ul class="card-bottom"> 

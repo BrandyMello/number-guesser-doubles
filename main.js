@@ -1,6 +1,7 @@
 var minRange = 1;
 var maxRange = 100;
 var randomNumber
+var guessCount = 0;
 
 var minRangeInput = document.getElementById('min-range-input');
 var maxRangeInput = document.getElementById('max-range-input');
@@ -214,6 +215,7 @@ function initiateGamePlay(e) {
   submitError(guess1);
   submitError(guess2);
   updateLatestScore();
+  guessCount = guessCount +2;
   compareGuess(guess1, message1, chall1Name.value);
   compareGuess(guess2, message2, chall2Name.value);
   clearGuesses();
@@ -228,7 +230,7 @@ function compareGuess(guess, message, name) {
   } else if (guessInt === randomNumber) {
       message.innerText = "BOOM!"
       appendCard(name);
-//generate new random number -- keeping 1 - 100 or custom range?
+      guessCount = 0;
     }
   }
 
@@ -247,7 +249,7 @@ function appendCard(winnerName) {
         <div >
           <ul class="card-bottom"> 
             <li>
-              <span class="guess-counter">23</span> GUESSES
+              <span class="guess-counter">${guessCount}</span> GUESSES
             </li>
             <li>
               <span class="clock">1</span> MINUTES

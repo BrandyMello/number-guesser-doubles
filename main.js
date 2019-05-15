@@ -32,15 +32,17 @@ var nanError2 = document.querySelector('.nan-error2');
 var submitErrorElem = document.querySelector('.submit-error');
 var updateErrorElem = document.querySelector('.update-error');
 var displayArea = document.querySelector('.display');
+var submitInputs = document.querySelectorAll('.submit-inputs')
+  
 
-
-clearBtn.addEventListener('click', clearGame);
+clearBtn.addEventListener('click', clearInputs);
 updateButton.addEventListener('click', updateError);
 updateButton.addEventListener('click', updateRange);
 submitBtn.addEventListener('click', initiateGamePlay);
 resetBtn.addEventListener('click', resetGame);
 displayArea.addEventListener('click', deleteCard);
-
+// submitInputs.addEventListener('keyup', enableSubmitBtn);
+submitBtn.disabled = true;
 clearBtn.disabled = true;
 resetBtn.disabled = true;
 
@@ -59,40 +61,56 @@ function increaseDifficulty() {
 }
 
 
-function enableClearBtn(name) {
-  if (name.value === "") {
-  clearBtn.disabled = true; 
-} else {clearBtn.disabled = false;}
+
+function enableSubmitBtn() {
+  for (var i = 0; i < submitInputs.length; i++) {
+    if (submitInputs[i].value === "") {
+      submitBtn.disabled = true;
+      return
+    } else {
+      submitBtn.disabled = false;
+    }
+  }
 }
 
-function enableResetBtn(name) {
-  if (name.value === "") {
-  resetBtn.disabled = true; 
-} else {resetBtn.disabled = false;}
+
+function enableClearResetBtn(name1, name2, button) {
+  if (name1.value === "" && name2.value === "") {
+  button.disabled = true; 
+  } else {
+    button.disabled = false;
+  }
 }
+
 
 chall1Name.addEventListener('keyup', function() {
   validateNames(chall1Name);
-  enableClearBtn(chall1Name);
-  enableResetBtn(chall1Name);
+  enableClearResetBtn(chall1Name, chall2Name, clearBtn);
+  enableClearResetBtn(chall1Name, chall2Name, resetBtn);
+  enableSubmitBtn();
 });
 
 chall2Name.addEventListener('keyup', function() {
   validateNames(chall2Name);
-  enableClearBtn(chall2Name);
-  enableResetBtn(chall2Name);
+  enableClearResetBtn(chall1Name, chall2Name, clearBtn);
+  enableClearResetBtn(chall1Name, chall2Name, resetBtn);
+  enableSubmitBtn()
 });
 
 guess1.addEventListener('keyup', function() {
   validateNumber(guess1, nanError1);
-  enableResetBtn(guess1);
+  enableClearResetBtn(guess1, guess2, resetBtn);
+  enableClearResetBtn(guess1, guess2, clearBtn);
   validateGuess(guess1, guessErrorElem1);
+  enableSubmitBtn()
 });
 
 guess2.addEventListener('keyup', function() {
   validateNumber(guess2, nanError2);
-  enableResetBtn(guess2);
+  enableClearResetBtn(guess1, guess2, resetBtn);
+  enableClearResetBtn(guess1, guess2, clearBtn);
   validateGuess(guess2, guessErrorElem2);
+  enableSubmitBtn()
 });
 
 minRangeInput.addEventListener('keyup', function() {
@@ -118,20 +136,16 @@ function validateGuess(guess, guessErrorElem) {
   var maxValue = max.innerText;
   var parsedMin = parseInt(minValue);
   var parsedMax = parseInt(maxValue);
-  if (guess.value > parsedMax) {
-    guess.style.borderColor = '#DD1972'; 
-    guessErrorElem.removeAttribute('hidden');
-  }
-  if (guess.value < parsedMin) {
-    guess.style.borderColor = '#DD1972'; 
+  if (guess.value > parsedMax || guess.value < parsedMin) {
+    addError(guess); 
     guessErrorElem.removeAttribute('hidden');
   }
   if (guess.value >= parsedMin && guess.value <= parsedMax) {
-    guess.style.borderColor = '#D0D2D3'; 
+    removeError(guess); 
     guessErrorElem.setAttribute('hidden', true);
   }
   if (guess.value.length < 1) {
-    guess.style.borderColor = '#D0D2D3';
+    removeError(guess);
     guessErrorElem.setAttribute('hidden', true);
   }
 }
@@ -157,6 +171,7 @@ function updateRange(e) {
   getRandomArbitrary(newMinRange, newMaxRange);
   minRangeInput.value = '';
   maxRangeInput.value  = '';
+  resetBtn.disabled = false;
 }
 
 function getRandomArbitrary(min, max) {
@@ -167,21 +182,23 @@ function getRandomArbitrary(min, max) {
 
 function validateNames(challName) {
   var regex = /^[0-9a-zA-Z]+$/;
-  if(regex.test(challName.value)!==true){ 
+  if(regex.test(challName.value)!==true){
+    addError(challName); 
+  } else {
+    removeError(challName);
   }
 }
 
-//consider adding number type in HTML
 function validateNumber(num, error) {
   var numGuess = parseInt(num.value);
   var regex = /^[0-9]+$/;
   if(regex.test(numGuess) !== true){
-    num.style.borderColor = '#DD1972';
+    addError(num);
     error.removeAttribute('hidden', false);
   }
   if (num.value === ""){
     error.setAttribute('hidden', true);
-    num.style.borderColor = '#D0D2D3';
+    removeError(num);
   }
 }
 
@@ -189,26 +206,32 @@ function minAboveMaxError() {
   var newMinRange = parseInt(minRangeInput.value);
   var newMaxRange = parseInt(maxRangeInput.value);
   if (newMinRange >= newMaxRange) {
-    minRangeInput.style.borderColor = '#DD1972';
+    addError(minRangeInput);
     minErrorElem.removeAttribute('hidden');
   }
   if (newMinRange < newMaxRange) {
-    minRangeInput.style.borderColor = '#D0D2D3';
+    removeError(minRangeInput);
     minErrorElem.setAttribute('hidden', true);
   }
 }
 
-//find and replace 'gray' with actual gray hex code
+function addError(inputName) {
+  inputName.classList.add('error-border')
+}
+
+function removeError(inputName) {
+  inputName.classList.remove('error-border')
+}
 
 function maxBelowMinError() {
   var newMinRange = parseInt(minRangeInput.value);
   var newMaxRange = parseInt(maxRangeInput.value);
   if (newMaxRange <= newMinRange) {
-    maxRangeInput.style.borderColor = "#DD1972"; 
+    addError(maxRangeInput); 
     maxErrorElem.removeAttribute('hidden');
   }
   if (newMaxRange > newMinRange) {
-    maxRangeInput.style.borderColor = '#D0D2D3';
+    removeError(maxRangeInput);
     maxErrorElem.setAttribute('hidden', true);
   }
 }
@@ -290,35 +313,31 @@ function appendCard(winnerName) {
     getRandomArbitrary(parsedMin, parsedMax);
   }
 
+  function clearInputs() {
+    chall1Name.value = "";
+    chall2Name.value = "";
+    clearGuesses()
+    clearBtn.disabled = true;
+    resetBtn.disabled = true;
+  }
+
   function clearGuesses() {
     guess1.value = "";
     guess2.value = "";
+    submitBtn.disabled = true;
   }
 
-  function clearNames() {
-    chall1Name.value = "";
-    chall2Name.value = "";
-  }
-
-  function clearGame(e) {
-    e.preventDefault();
-    clearNames();
-    clearBtn.disabled = true;
-  }
-
-  function resetScoreBoard() {
-    name1.innerText = 'Challenge 1 Name';
-    name2.innerText = 'Challenge 2 Name';
-    guess1Output.innerText = 0;
-    guess2Output.innerText = 0;
-    message1.innerText = 'guess message';
-    message2.innerText = 'guess message';  
+  function resetScoreBoard(name, guess, message, num) {
+    name.innerText = `Challenger ${num} name`;
+    guess.innerText = '?';
+    message.innerText = 'enter a guess';
   }
 
   function resetGame(e) {
     e.preventDefault();
-    resetScoreBoard();
-    clearNames();
+    resetScoreBoard(name1, guess1Output, message1, 1);
+    resetScoreBoard(name2, guess2Output, message2, 2);
+    clearInputs();
     min.innerText = 1;
     max.innerText = 100;
     getRandomArbitrary(1, 100)

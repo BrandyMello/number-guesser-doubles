@@ -32,7 +32,8 @@ var nanError2 = document.querySelector('.nan-error2');
 var submitErrorElem = document.querySelector('.submit-error');
 var updateErrorElem = document.querySelector('.update-error');
 var displayArea = document.querySelector('.display');
-
+var submitInputs = document.querySelectorAll('.submit-inputs')
+  
 
 clearBtn.addEventListener('click', clearInputs);
 updateButton.addEventListener('click', updateError);
@@ -40,7 +41,8 @@ updateButton.addEventListener('click', updateRange);
 submitBtn.addEventListener('click', initiateGamePlay);
 resetBtn.addEventListener('click', resetGame);
 displayArea.addEventListener('click', deleteCard);
-
+// submitInputs.addEventListener('keyup', enableSubmitBtn);
+submitBtn.disabled = true;
 clearBtn.disabled = true;
 resetBtn.disabled = true;
 
@@ -58,7 +60,18 @@ function increaseDifficulty() {
   max.innerText = maxPlus;
 }
 
-// function
+
+
+function enableSubmitBtn() {
+  for (var i = 0; i < submitInputs.length; i++) {
+    if (submitInputs[i].value === "") {
+      submitBtn.disabled = true;
+      return
+    } else {
+      submitBtn.disabled = false;
+    }
+  }
+}
 
 
 function enableClearResetBtn(name1, name2, button) {
@@ -74,12 +87,14 @@ chall1Name.addEventListener('keyup', function() {
   validateNames(chall1Name);
   enableClearResetBtn(chall1Name, chall2Name, clearBtn);
   enableClearResetBtn(chall1Name, chall2Name, resetBtn);
+  enableSubmitBtn();
 });
 
 chall2Name.addEventListener('keyup', function() {
   validateNames(chall2Name);
   enableClearResetBtn(chall1Name, chall2Name, clearBtn);
   enableClearResetBtn(chall1Name, chall2Name, resetBtn);
+  enableSubmitBtn()
 });
 
 guess1.addEventListener('keyup', function() {
@@ -87,6 +102,7 @@ guess1.addEventListener('keyup', function() {
   enableClearResetBtn(guess1, guess2, resetBtn);
   enableClearResetBtn(guess1, guess2, clearBtn);
   validateGuess(guess1, guessErrorElem1);
+  enableSubmitBtn()
 });
 
 guess2.addEventListener('keyup', function() {
@@ -94,6 +110,7 @@ guess2.addEventListener('keyup', function() {
   enableClearResetBtn(guess1, guess2, resetBtn);
   enableClearResetBtn(guess1, guess2, clearBtn);
   validateGuess(guess2, guessErrorElem2);
+  enableSubmitBtn()
 });
 
 minRangeInput.addEventListener('keyup', function() {
@@ -158,6 +175,7 @@ function updateRange(e) {
   getRandomArbitrary(newMinRange, newMaxRange);
   minRangeInput.value = '';
   maxRangeInput.value  = '';
+  resetBtn.disabled = false;
 }
 
 function getRandomArbitrary(min, max) {
@@ -227,7 +245,7 @@ function initiateGamePlay(e) {
   guessCount = guessCount +2;
   compareGuess(guess1, message1, chall1Name.value);
   compareGuess(guess2, message2, chall2Name.value);
-  clearInputs();
+  clearGuesses();
 }
 
 function compareGuess(guess, message, name) {
@@ -292,10 +310,15 @@ function appendCard(winnerName) {
   function clearInputs() {
     chall1Name.value = "";
     chall2Name.value = "";
-    guess1.value = "";
-    guess2.value = "";
+    clearGuesses()
     clearBtn.disabled = true;
     resetBtn.disabled = true;
+  }
+
+  function clearGuesses() {
+    guess1.value = "";
+    guess2.value = "";
+    submitBtn.disabled = true;
   }
 
   function resetScoreBoard(name, guess, message, num) {

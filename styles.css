@@ -303,8 +303,6 @@ main {
   background-color: #D0D2D3;
 }
 
-/*Media Queries*/
-
 @media screen and (max-width: 900px) {
 
   p.winner-tagline {
@@ -393,6 +391,7 @@ main {
     margin: auto;
     padding-bottom: 20px; 
   }
+
 }
 
 @media screen and (max-width: 600px) {
@@ -436,4 +435,5 @@ main {
     padding-bottom: 8px;
     padding-top: 8px;
   }
+  
 }

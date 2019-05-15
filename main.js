@@ -227,7 +227,7 @@ function initiateGamePlay(e) {
   guessCount = guessCount +2;
   compareGuess(guess1, message1, chall1Name.value);
   compareGuess(guess2, message2, chall2Name.value);
-  clearGuesses();
+  clearInputs();
 }
 
 function compareGuess(guess, message, name) {

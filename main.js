@@ -137,19 +137,19 @@ function validateGuess(guess, guessErrorElem) {
   var parsedMin = parseInt(minValue);
   var parsedMax = parseInt(maxValue);
   if (guess.value > parsedMax) {
-    guess.style.borderColor = '#DD1972'; 
+    addError(guess); 
     guessErrorElem.removeAttribute('hidden');
   }
   if (guess.value < parsedMin) {
-    guess.style.borderColor = '#DD1972'; 
+    addError(guess); 
     guessErrorElem.removeAttribute('hidden');
   }
   if (guess.value >= parsedMin && guess.value <= parsedMax) {
-    guess.style.borderColor = '#D0D2D3'; 
+    removeError(guess); 
     guessErrorElem.setAttribute('hidden', true);
   }
   if (guess.value.length < 1) {
-    guess.style.borderColor = '#D0D2D3';
+    removeError(guess);
     guessErrorElem.setAttribute('hidden', true);
   }
 }
@@ -190,17 +190,16 @@ function validateNames(challName) {
   }
 }
 
-//consider adding number type in HTML
 function validateNumber(num, error) {
   var numGuess = parseInt(num.value);
   var regex = /^[0-9]+$/;
   if(regex.test(numGuess) !== true){
-    num.style.borderColor = '#DD1972';
+    addError(num);
     error.removeAttribute('hidden', false);
   }
   if (num.value === ""){
     error.setAttribute('hidden', true);
-    num.style.borderColor = '#D0D2D3';
+    removeError(num);
   }
 }
 
@@ -208,24 +207,32 @@ function minAboveMaxError() {
   var newMinRange = parseInt(minRangeInput.value);
   var newMaxRange = parseInt(maxRangeInput.value);
   if (newMinRange >= newMaxRange) {
-    minRangeInput.style.borderColor = '#DD1972';
+    addError(minRangeInput);
     minErrorElem.removeAttribute('hidden');
   }
   if (newMinRange < newMaxRange) {
-    minRangeInput.style.borderColor = '#D0D2D3';
+    removeError(minRangeInput);
     minErrorElem.setAttribute('hidden', true);
   }
+}
+
+function addError(inputName) {
+  inputName.classList.add('error-border')
+}
+
+function removeError(inputName) {
+  inputName.classList.remove('error-border')
 }
 
 function maxBelowMinError() {
   var newMinRange = parseInt(minRangeInput.value);
   var newMaxRange = parseInt(maxRangeInput.value);
   if (newMaxRange <= newMinRange) {
-    maxRangeInput.style.borderColor = "#DD1972"; 
+    addError(maxRangeInput); 
     maxErrorElem.removeAttribute('hidden');
   }
   if (newMaxRange > newMinRange) {
-    maxRangeInput.style.borderColor = '#D0D2D3';
+    removeError(maxRangeInput);
     maxErrorElem.setAttribute('hidden', true);
   }
 }

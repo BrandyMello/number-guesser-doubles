@@ -283,6 +283,10 @@ main {
   color: #DD1972;
 }
 
+.error-border {
+  border-color: #DD1972;
+}
+
 #chall1-name-input:invalid {
   border-color: #DD1972;
 }
@@ -435,5 +439,5 @@ main {
     padding-bottom: 8px;
     padding-top: 8px;
   }
-  
+
 }

@@ -136,11 +136,7 @@ function validateGuess(guess, guessErrorElem) {
   var maxValue = max.innerText;
   var parsedMin = parseInt(minValue);
   var parsedMax = parseInt(maxValue);
-  if (guess.value > parsedMax) {
-    addError(guess); 
-    guessErrorElem.removeAttribute('hidden');
-  }
-  if (guess.value < parsedMin) {
+  if (guess.value > parsedMax || guess.value < parsedMin) {
     addError(guess); 
     guessErrorElem.removeAttribute('hidden');
   }
@@ -186,7 +182,10 @@ function getRandomArbitrary(min, max) {
 
 function validateNames(challName) {
   var regex = /^[0-9a-zA-Z]+$/;
-  if(regex.test(challName.value)!==true){ 
+  if(regex.test(challName.value)!==true){
+    addError(challName); 
+  } else {
+    removeError(challName);
   }
 }
 

@@ -224,6 +224,7 @@ function initiateGamePlay(e) {
   e.preventDefault();
   submitError(guess1);
   submitError(guess2);
+  
   updateLatestScore();
   guessCount = guessCount +2;
   compareGuess(guess1, message1, chall1Name.value);
@@ -306,18 +307,16 @@ function appendCard(winnerName) {
     clearBtn.disabled = true;
   }
 
-  function resetScoreBoard() {
-    name1.innerText = 'Challenge 1 Name';
-    name2.innerText = 'Challenge 2 Name';
-    guess1Output.innerText = 0;
-    guess2Output.innerText = 0;
-    message1.innerText = 'guess message';
-    message2.innerText = 'guess message';  
+  function resetScoreBoard(name, guess, message, num) {
+    name.innerText = `Challenger ${num} name`;
+    guess.innerText = '?';
+    message.innerText = 'enter a guess';
   }
 
   function resetGame(e) {
     e.preventDefault();
-    resetScoreBoard();
+    resetScoreBoard(name1, guess1Output, message1, 1);
+    resetScoreBoard(name2, guess2Output, message2, 2);
     clearNames();
     min.innerText = 1;
     max.innerText = 100;

@@ -262,7 +262,7 @@ button {
 
 main {
   display: flex;
-  height: 100vh;
+  height: 120vh;
 
 }
 
@@ -372,7 +372,7 @@ button {
   }
 
   main {
-  height: 150vh;
+  height: 163vh;
 }
 
   p {
@@ -430,6 +430,10 @@ button {
   .display,
   .game {
     width: 100%;
+  }
+
+  .display{
+    height: 100%;
   }
 
   .style-score {

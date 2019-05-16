@@ -1,14 +1,7 @@
-var minRange = 1;
-var maxRange = 100;
-var randomNumber
-var guessCount = 0;
-
 var minRangeInput = document.getElementById('min-range-input');
 var maxRangeInput = document.getElementById('max-range-input');
-
 var updateButton = document.querySelector('.update-btn');
 var submitBtn = document.querySelector('#submit-btn');
-
 var guess1 = document.querySelector("#chall1-guess-input");
 var guess2 = document.querySelector("#chall2-guess-input");
 var chall1Name = document.querySelector("#chall1-name-input");
@@ -32,56 +25,25 @@ var nanError2 = document.querySelector('.nan-error2');
 var submitErrorElem = document.querySelector('.submit-error');
 var updateErrorElem = document.querySelector('.update-error');
 var displayArea = document.querySelector('.display');
-var submitInputs = document.querySelectorAll('.submit-inputs')
-  
+var submitInputs = document.querySelectorAll('.submit-inputs');
+var inputTest = document.querySelectorAll('input');
+var minRange = 1;
+var maxRange = 100;
+var randomNumber
+var guessCount = 0;
 
+
+  
 clearBtn.addEventListener('click', clearInputs);
 updateButton.addEventListener('click', updateError);
 updateButton.addEventListener('click', updateRange);
 submitBtn.addEventListener('click', initiateGamePlay);
 resetBtn.addEventListener('click', resetGame);
 displayArea.addEventListener('click', deleteCard);
-// submitInputs.addEventListener('keyup', enableSubmitBtn);
+
 submitBtn.disabled = true;
 clearBtn.disabled = true;
 resetBtn.disabled = true;
-
-var inputTest = document.querySelectorAll('input');
-
-getRandomArbitrary(1, 100);
-
-function increaseDifficulty() {
-  var parsedMin = parseInt(min.innerText);
-  var parsedMax = parseInt(max.innerText);
-  var minMinus = parsedMin - 10;
-  var maxPlus = parsedMax + 10;
-  getRandomArbitrary(minMinus, maxPlus);
-  min.innerText = minMinus;
-  max.innerText = maxPlus;
-}
-
-
-
-function enableSubmitBtn() {
-  for (var i = 0; i < submitInputs.length; i++) {
-    if (submitInputs[i].value === "") {
-      submitBtn.disabled = true;
-      return
-    } else {
-      submitBtn.disabled = false;
-    }
-  }
-}
-
-
-function enableClearResetBtn(name1, name2, button) {
-  if (name1.value === "" && name2.value === "") {
-  button.disabled = true; 
-  } else {
-    button.disabled = false;
-  }
-}
-
 
 chall1Name.addEventListener('keyup', function() {
   validateNames(chall1Name);
@@ -124,6 +86,37 @@ maxRangeInput.addEventListener('keyup', function() {
   minAboveMaxError();
   removeUpdateError();
 });
+
+getRandomArbitrary(1, 100);
+
+function increaseDifficulty() {
+  var parsedMin = parseInt(min.innerText);
+  var parsedMax = parseInt(max.innerText);
+  var minMinus = parsedMin - 10;
+  var maxPlus = parsedMax + 10;
+  getRandomArbitrary(minMinus, maxPlus);
+  min.innerText = minMinus;
+  max.innerText = maxPlus;
+}
+
+function enableSubmitBtn() {
+  for (var i = 0; i < submitInputs.length; i++) {
+    if (submitInputs[i].value === "") {
+      submitBtn.disabled = true;
+      return
+    } else {
+      submitBtn.disabled = false;
+    }
+  }
+}
+
+function enableClearResetBtn(name1, name2, button) {
+  if (name1.value === "" && name2.value === "") {
+  button.disabled = true; 
+  } else {
+    button.disabled = false;
+  }
+}
 
 function submitError(guess) {
   if (guess.value === "") {
@@ -176,13 +169,12 @@ function updateRange(e) {
 
 function getRandomArbitrary(min, max) {
   randomNumber = Math.floor(Math.random() * (max - min) + min);
-  console.log(randomNumber);
   return randomNumber;
 }
 
 function validateNames(challName) {
   var regex = /^[0-9a-zA-Z]+$/;
-  if(regex.test(challName.value)!==true){
+  if (regex.test(challName.value) !== true){
     addError(challName); 
   } else {
     removeError(challName);
@@ -192,7 +184,7 @@ function validateNames(challName) {
 function validateNumber(num, error) {
   var numGuess = parseInt(num.value);
   var regex = /^[0-9]+$/;
-  if(regex.test(numGuess) !== true){
+  if (regex.test(numGuess) !== true){
     addError(num);
     error.removeAttribute('hidden', false);
   }
@@ -268,9 +260,6 @@ function compareGuess(guess, message, name) {
     }
   }
 
-
-  
-
 function appendCard(winnerName) {
   var cardHTML = `
     <article class="winnercard">
@@ -295,11 +284,9 @@ function appendCard(winnerName) {
         </div> 
       </article> `;
       displayArea.insertAdjacentHTML('afterbegin', cardHTML);
-      // generateNewRandomNum();
 }
 
   function deleteCard(e){
-    console.log(e.target);
     if (e.target.className === "remove-card-btn"){
       e.target.closest('.winnercard').remove();
     }

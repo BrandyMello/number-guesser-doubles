@@ -7,17 +7,17 @@ Brianna DelValle
 
 ## Comps
 
-# Turing Dekstop Comp
+### Turing Dekstop Comp
 ![Turing Desktop Comp](http://frontend.turing.io/assets/images/projects/number-guesser/week2-numberguesser-01.jpg)
 
-# Turing Mobile Comp
+### Turing Mobile Comp
 ![Turing Mobile Comp](https://imgur.com/KDDAa53.jpg)
 
-# Mello/DelValle Comp
+### Mello/DelValle Comp
 
 ![Mello/DelValle Comp](http://imgur.com/8eDNAqi.png)
 
-# Mello/DelValle Mobile Comp
+### Mello/DelValle Mobile Comp
 
 ![Mello/DelValle Mobile Comp](https://imgur.com/lVLyBke.png)
 

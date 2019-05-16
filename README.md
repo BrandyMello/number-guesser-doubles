@@ -5,7 +5,7 @@ Below is the result of the first paired project in Mod 1 1904 at Turing School o
 Brandy A Mello  
 Brianna DelValle
 
-# number-guesser-doubles
+## Comps
 
 ![Turing Desktop Comp](http://frontend.turing.io/assets/images/projects/number-guesser/week2-numberguesser-01.jpg)
 

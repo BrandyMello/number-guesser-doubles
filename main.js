@@ -40,12 +40,19 @@ updateButton.addEventListener('click', updateRange);
 submitBtn.addEventListener('click', initiateGamePlay);
 resetBtn.addEventListener('click', resetGame);
 displayArea.addEventListener('click', deleteCard);
+chall1Name.addEventListener('keyup', runName1);
+chall2Name.addEventListener('keyup', runName2);
+guess1.addEventListener('keyup', runGuess1);
+guess2.addEventListener('keyup', runGuess2);
+minRangeInput.addEventListener('keyup', runMinRange);
+maxRangeInput.addEventListener('keyup', runMaxRange);
 
 submitBtn.disabled = true;
 clearBtn.disabled = true;
 resetBtn.disabled = true;
 
-chall1Name.addEventListener('keyup', runName1);
+getRandomArbitrary(1, 100);
+
 function runName1() {
   validateNames(chall1Name);
   enableClearResetBtn(chall1Name, chall2Name, clearBtn);
@@ -53,7 +60,6 @@ function runName1() {
   enableSubmitBtn();
 }
 
-chall2Name.addEventListener('keyup', runName2);
 function runName2() {
   validateNames(chall2Name);
   enableClearResetBtn(chall1Name, chall2Name, clearBtn);
@@ -61,7 +67,6 @@ function runName2() {
   enableSubmitBtn()
 }
 
-guess1.addEventListener('keyup', runGuess1);
 function runGuess1() {
   validateNumber(guess1, nanError1);
   enableClearResetBtn(guess1, guess2, resetBtn);
@@ -70,7 +75,6 @@ function runGuess1() {
   enableSubmitBtn()
 }
 
-guess2.addEventListener('keyup', runGuess2); 
 function runGuess2() {
   validateNumber(guess2, nanError2);
   enableClearResetBtn(guess1, guess2, resetBtn);
@@ -79,21 +83,17 @@ function runGuess2() {
   enableSubmitBtn()
 }
 
-minRangeInput.addEventListener('keyup', runMinRange);
 function runMinRange() {
   minAboveMaxError();
   maxBelowMinError();
   removeUpdateError();
 }
 
-maxRangeInput.addEventListener('keyup', runMaxRange);
 function runMaxRange() {
   maxBelowMinError();
   minAboveMaxError();
   removeUpdateError();
 }
-
-getRandomArbitrary(1, 100);
 
 function increaseDifficulty() {
   var parsedMin = parseInt(min.innerText);

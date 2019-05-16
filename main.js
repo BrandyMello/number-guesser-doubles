@@ -45,47 +45,53 @@ submitBtn.disabled = true;
 clearBtn.disabled = true;
 resetBtn.disabled = true;
 
-chall1Name.addEventListener('keyup', function() {
+chall1Name.addEventListener('keyup', runName1);
+function runName1() {
   validateNames(chall1Name);
   enableClearResetBtn(chall1Name, chall2Name, clearBtn);
   enableClearResetBtn(chall1Name, chall2Name, resetBtn);
   enableSubmitBtn();
-});
+}
 
-chall2Name.addEventListener('keyup', function() {
+chall2Name.addEventListener('keyup', runName2);
+function runName2() {
   validateNames(chall2Name);
   enableClearResetBtn(chall1Name, chall2Name, clearBtn);
   enableClearResetBtn(chall1Name, chall2Name, resetBtn);
   enableSubmitBtn()
-});
+}
 
-guess1.addEventListener('keyup', function() {
+guess1.addEventListener('keyup', runGuess1);
+function runGuess1() {
   validateNumber(guess1, nanError1);
   enableClearResetBtn(guess1, guess2, resetBtn);
   enableClearResetBtn(guess1, guess2, clearBtn);
   validateGuess(guess1, guessErrorElem1);
   enableSubmitBtn()
-});
+}
 
-guess2.addEventListener('keyup', function() {
+guess2.addEventListener('keyup', runGuess2); 
+function runGuess2() {
   validateNumber(guess2, nanError2);
   enableClearResetBtn(guess1, guess2, resetBtn);
   enableClearResetBtn(guess1, guess2, clearBtn);
   validateGuess(guess2, guessErrorElem2);
   enableSubmitBtn()
-});
+}
 
-minRangeInput.addEventListener('keyup', function() {
+minRangeInput.addEventListener('keyup', runMinRange);
+function runMinRange() {
   minAboveMaxError();
   maxBelowMinError();
   removeUpdateError();
-});
+}
 
-maxRangeInput.addEventListener('keyup', function() {
+maxRangeInput.addEventListener('keyup', runMaxRange);
+function runMaxRange() {
   maxBelowMinError();
   minAboveMaxError();
   removeUpdateError();
-});
+}
 
 getRandomArbitrary(1, 100);
 
@@ -305,7 +311,6 @@ function appendCard(winnerName) {
     chall2Name.value = "";
     clearGuesses()
     clearBtn.disabled = true;
-    resetBtn.disabled = true;
   }
 
   function clearGuesses() {
